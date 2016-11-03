@@ -5,39 +5,41 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
 public class GameScreen extends ScreenAdapter {
 	private MyTwocarsGame mytwocarsGame;
 	private Texture bluecarImg;
 	private Texture redcarImg;
 	private Texture bgImg;
-	private int x;
+	private int xb;
+	private int xr;
 	private int y;
+	private Bluecar bluecar;
+	private Redcar redcar;
+	World world;
+	WorldRenderer worldRenderer;
 	 
     public GameScreen(MyTwocarsGame mytwocarsGame) {
         this.mytwocarsGame = mytwocarsGame;
-        bluecarImg = new Texture("bluecar.png");
-        redcarImg = new Texture("redcar.png");
-        bgImg = new Texture("bg.jpg");
-        x = 100;
-        y = 100;
+     
+        world = new World(mytwocarsGame);
+        worldRenderer = new WorldRenderer(mytwocarsGame,world);
+        //position 35/160/290/415
     }
     @Override
     public void render(float delta) {
+    	update(delta);
     	Gdx.gl.glClearColor(0, 0, 0, 1);
     	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-    	update(delta);
-        SpriteBatch batch = mytwocarsGame.batch;
-        batch.begin();
-        batch.draw(bluecarImg, x, y);
-        batch.end();
+    	worldRenderer.render(delta);
     }
 	private void update(float delta) {
-		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-			x -= 10;
+		if(Gdx.input.isKeyPressed(Keys.Z)) {
+			redcar.setNextDirection(Redcar.DIRECTION_RIGHT);
 		}
-		if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			x += 10;
+		if(Gdx.input.isKeyPressed(Keys.X)) {
+			bluecar.setNextDirection(Bluecar.DIRECTION_LEFT);
 		}
 	}
 }
