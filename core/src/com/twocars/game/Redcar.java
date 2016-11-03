@@ -2,6 +2,7 @@ package com.twocars.game;
 
 import com.badlogic.gdx.math.Vector2;
 
+
 public class Redcar {
 	private Vector2 position;
 	 public static final int DIRECTION_UP = 1;
@@ -12,6 +13,7 @@ public class Redcar {
 	 private static final int SPEED = 5;
 	 private int currentDirection;
 	 private int nextDirection;
+	 private World world; 
 	 
 	 
 	 
@@ -27,6 +29,7 @@ public class Redcar {
         position = new Vector2(x,y);
         currentDirection = DIRECTION_STILL;
         nextDirection = DIRECTION_STILL;
+        this.world = world;
     }   
     
     public void setNextDirection(int dir) {
@@ -37,16 +40,23 @@ public class Redcar {
     }
     
     public void update() {
-        if(isAtCenter()) {
-            currentDirection = nextDirection;
-        }
+   
         position.x += SPEED * DIR_OFFSETS[currentDirection][0];
         position.y += SPEED * DIR_OFFSETS[currentDirection][1];
     }
     
-    private boolean isAtCenter() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+ 
+    //position 35/160/290/415
     
+    public void move(int dir) { 
+    	if(position.x >= 165) {
+    		position.x = 165;
+    	}
+    	if(position.x <= 35) {
+    		position.x = 35;
+    	}
+        position.x += 10 * DIR_OFFSETS[dir][0];
+    }
+
+
 }

@@ -7,7 +7,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 public class WorldRenderer{
-
+	
+	public static final int BLOCK_SIZE = 50;
 	private SpriteBatch batch;
 	private MyTwocarsGame mytwocarsGame;
 	private Texture bluecarImg;

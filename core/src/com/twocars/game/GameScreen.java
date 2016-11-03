@@ -9,12 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class GameScreen extends ScreenAdapter {
 	private MyTwocarsGame mytwocarsGame;
-	private Texture bluecarImg;
-	private Texture redcarImg;
-	private Texture bgImg;
-	private int xb;
-	private int xr;
-	private int y;
+	
 	private Bluecar bluecar;
 	private Redcar redcar;
 	World world;
@@ -35,11 +30,23 @@ public class GameScreen extends ScreenAdapter {
     	worldRenderer.render(delta);
     }
 	private void update(float delta) {
-		if(Gdx.input.isKeyPressed(Keys.Z)) {
-			redcar.setNextDirection(Redcar.DIRECTION_RIGHT);
+		Bluecar bluecar = world.getBluecar();
+		Redcar redcar = world.getRedcar();
+		if(Gdx.input.isKeyPressed(Keys.D)) {
+			redcar.move(Redcar.DIRECTION_RIGHT);
 		}
-		if(Gdx.input.isKeyPressed(Keys.X)) {
-			bluecar.setNextDirection(Bluecar.DIRECTION_LEFT);
+		if(Gdx.input.isKeyPressed(Keys.A)) {
+			redcar.move(Redcar.DIRECTION_LEFT);
 		}
+		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+			bluecar.move(Bluecar.DIRECTION_LEFT);
+		}
+		if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+			bluecar.move(Bluecar.DIRECTION_RIGHT);
+		}else{
+			bluecar.move(Bluecar.DIRECTION_STILL);
+			redcar.move(Redcar.DIRECTION_STILL);
+   	 }
+  	  	world.update(delta);
 	}
 }

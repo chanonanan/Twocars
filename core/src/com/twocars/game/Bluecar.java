@@ -2,6 +2,8 @@ package com.twocars.game;
 
 import com.badlogic.gdx.math.Vector2;
 
+
+
 public class Bluecar {
 	private Vector2 position;
     public static final int DIRECTION_UP = 1;
@@ -12,6 +14,7 @@ public class Bluecar {
 	private static final int SPEED = 5;
     private int currentDirection;
     private int nextDirection;
+    private World world; 
     
     private static final int [][] DIR_OFFSETS = new int [][] {
         {0,0},
@@ -20,32 +23,46 @@ public class Bluecar {
         {0,1},
         {-1,0}
     };
-
-	 
-    public Bluecar(int x, int y) {
+  
+    public Bluecar(int x, int y, World world) {
         position = new Vector2(x,y);
         currentDirection = DIRECTION_STILL;
         nextDirection = DIRECTION_STILL;
+        this.world = world;
     }    
     public void setNextDirection(int dir) {
         nextDirection = dir;
+
     }
  
+    
+
+    
     public Vector2 getPosition() {
         return position;    
     }
     
     public void update() {
-        if(isAtCenter()) {
-            currentDirection = nextDirection;
-        }
+  
         position.x += SPEED * DIR_OFFSETS[currentDirection][0];
         position.y += SPEED * DIR_OFFSETS[currentDirection][1];
+
     }
     
-    private boolean isAtCenter() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+ 
 	
+    
+    //position 35/160/290/415
+    
+    public void move(int dir) { 
+    	if(position.x >= 420) {
+    		position.x = 420;
+    	}
+    	if(position.x <= 290) {
+    		position.x = 290;
+    	}
+        position.x += 10 * DIR_OFFSETS[dir][0];
+    }
+    
+
 }
