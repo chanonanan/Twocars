@@ -14,9 +14,14 @@ public class WorldRenderer{
 	private Texture bluecarImg;
 	private Texture redcarImg;
 	private Texture bgImg;
+	private Texture ballImg;
+	private Texture boxImg;
 	private World world;
 	private Bluecar bluecar;
 	private Redcar redcar;
+	private Ball ball;
+	private Box box;
+	float timeAux = 0;
 
 	public WorldRenderer(MyTwocarsGame mytwocarsGame, World world) {
 		this.mytwocarsGame = mytwocarsGame;
@@ -25,13 +30,15 @@ public class WorldRenderer{
 		bluecarImg = new Texture("bluecar.png");
     	redcarImg = new Texture("redcar.png");
     	bgImg = new Texture("bg.jpg");
+    	ballImg = new Texture("ball.png");
+    	boxImg = new Texture("box.png");
     	bluecar = world.getBluecar();
     	redcar = world.getRedcar();
 
 	}
 	
     public void render(float delta) {
- 
+    	
         SpriteBatch batch = mytwocarsGame.batch;
         batch.begin();
         Vector2 pos_blue = bluecar.getPosition();
@@ -39,6 +46,20 @@ public class WorldRenderer{
         batch.draw(bgImg, 0, 0);
         batch.draw(bluecarImg, pos_blue.x, pos_blue.y);
         batch.draw(redcarImg, pos_red.x, pos_red.y);
+        
+		if(timeAux >=0.5){ //10 seconds
+			System.out.println("Hello " + timeAux);
+			if(delta*1000 > 17){
+				batch.draw(ballImg, 35, 500);
+			}else {
+				batch.draw(boxImg, 35, 500);
+			}
+            timeAux=0;
+        }else{
+            timeAux+=delta;
+            System.out.println("Hello 2:" + timeAux);
+        }
+		
         batch.end();
     }
 }

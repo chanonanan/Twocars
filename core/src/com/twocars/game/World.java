@@ -9,7 +9,7 @@ public class World {
 	World(MyTwocarsGame mytwocarGame) {
 		this.mytwocarGame = mytwocarGame;
 		
-		bluecar = new Bluecar(415,75,this);
+		bluecar = new Bluecar(415,75);
 	    redcar = new Redcar(35,75);
 
 	}

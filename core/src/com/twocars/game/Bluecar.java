@@ -24,7 +24,7 @@ public class Bluecar {
         {-1,0}
     };
   
-    public Bluecar(int x, int y, World world) {
+    public Bluecar(int x, int y) {
         position = new Vector2(x,y);
         currentDirection = DIRECTION_STILL;
         nextDirection = DIRECTION_STILL;

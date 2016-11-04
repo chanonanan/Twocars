@@ -10,8 +10,6 @@ import com.badlogic.gdx.math.Vector2;
 public class GameScreen extends ScreenAdapter {
 	private MyTwocarsGame mytwocarsGame;
 	
-	private Bluecar bluecar;
-	private Redcar redcar;
 	World world;
 	WorldRenderer worldRenderer;
 	 
