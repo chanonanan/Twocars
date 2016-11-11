@@ -1,5 +1,4 @@
 package com.twocars.game;
-
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
@@ -8,8 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-
-	public class MyTwocarsGame extends Game {
+public class MyTwocarsGame extends Game {
 		public SpriteBatch batch;
 	
 		@Override
@@ -18,9 +16,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 			setScreen(new GameScreen(this));
 		}
 
-
-	
-	
 		@Override
 		public void dispose () {
 		batch.dispose();

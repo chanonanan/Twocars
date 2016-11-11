@@ -1,4 +1,6 @@
 package com.twocars.game;
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.ScreenAdapter;
@@ -7,11 +9,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
+
 public class GameScreen extends ScreenAdapter {
 	private MyTwocarsGame mytwocarsGame;
-	
 	World world;
 	WorldRenderer worldRenderer;
+	private List<Ball> ball;
+
 	 
     public GameScreen(MyTwocarsGame mytwocarsGame) {
         this.mytwocarsGame = mytwocarsGame;
@@ -20,6 +24,7 @@ public class GameScreen extends ScreenAdapter {
         worldRenderer = new WorldRenderer(mytwocarsGame,world);
         //position 35/160/290/415
     }
+    
     @Override
     public void render(float delta) {
     	update(delta);
@@ -27,24 +32,30 @@ public class GameScreen extends ScreenAdapter {
     	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     	worldRenderer.render(delta);
     }
+    //position 35/160/290/415
 	private void update(float delta) {
+		getInput();
+  	  	world.update(delta);
+	}
+	
+	private void getInput() {
 		Bluecar bluecar = world.getBluecar();
 		Redcar redcar = world.getRedcar();
-		if(Gdx.input.isKeyPressed(Keys.D)) {
+		if(Gdx.input.isKeyJustPressed(Keys.D)) {
 			redcar.move(Redcar.DIRECTION_RIGHT);
 		}
-		if(Gdx.input.isKeyPressed(Keys.A)) {
+		if(Gdx.input.isKeyJustPressed(Keys.A)) {
 			redcar.move(Redcar.DIRECTION_LEFT);
 		}
-		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+
+		if(Gdx.input.isKeyJustPressed(Keys.LEFT)) {
 			bluecar.move(Bluecar.DIRECTION_LEFT);
 		}
-		if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+		if(Gdx.input.isKeyJustPressed(Keys.RIGHT)) {
 			bluecar.move(Bluecar.DIRECTION_RIGHT);
 		}else{
 			bluecar.move(Bluecar.DIRECTION_STILL);
 			redcar.move(Redcar.DIRECTION_STILL);
-   	 }
-  	  	world.update(delta);
+   	 	}
 	}
 }

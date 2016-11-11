@@ -1,8 +1,5 @@
 package com.twocars.game;
-
 import com.badlogic.gdx.math.Vector2;
-
-
 
 public class Bluecar {
 	private Vector2 position;
@@ -30,39 +27,33 @@ public class Bluecar {
         nextDirection = DIRECTION_STILL;
         this.world = world;
     }    
+    
     public void setNextDirection(int dir) {
         nextDirection = dir;
 
     }
- 
-    
-
-    
+     
     public Vector2 getPosition() {
         return position;    
     }
     
     public void update() {
-  
-        position.x += SPEED * DIR_OFFSETS[currentDirection][0];
+         position.x += SPEED * DIR_OFFSETS[currentDirection][0];
         position.y += SPEED * DIR_OFFSETS[currentDirection][1];
-
     }
-    
- 
-	
-    
     //position 35/160/290/415
     
     public void move(int dir) { 
-    	if(position.x >= 420) {
-    		position.x = 420;
-    	}
-    	if(position.x <= 290) {
-    		position.x = 290;
-    	}
-        position.x += 10 * DIR_OFFSETS[dir][0];
-    }
-    
+        	if(position.x >= 420) {
+        		position.x = 420;
+        	}
+        	if(position.x <= 290) {
+        		position.x = 290;
+        	}
+            
+            for (int i=1 ;i<=130 ;i++) {
+            	position.x += 1 * DIR_OFFSETS[dir][0];
 
+            }
+    }
 }

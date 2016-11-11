@@ -1,7 +1,5 @@
 package com.twocars.game;
-
 import com.badlogic.gdx.math.Vector2;
-
 
 public class Redcar {
 	private Vector2 position;
@@ -14,8 +12,6 @@ public class Redcar {
 	 private int currentDirection;
 	 private int nextDirection;
 	 private World world; 
-	 
-	 
 	 
 	private static final int [][] DIR_OFFSETS = new int [][] {
 		{0,0},
@@ -35,6 +31,7 @@ public class Redcar {
     public void setNextDirection(int dir) {
         nextDirection = dir;
     }
+    
     public Vector2 getPosition() {
         return position;    
     }
@@ -45,18 +42,18 @@ public class Redcar {
         position.y += SPEED * DIR_OFFSETS[currentDirection][1];
     }
     
- 
     //position 35/160/290/415
     
     public void move(int dir) { 
-    	if(position.x >= 165) {
-    		position.x = 165;
+    	if(position.x >= 160) {
+    		position.x = 160;
     	}
     	if(position.x <= 35) {
     		position.x = 35;
     	}
-        position.x += 10 * DIR_OFFSETS[dir][0];
+        
+        for (int i=1 ;i<=125 ;i++) {
+        	position.x += 1 * DIR_OFFSETS[dir][0];
+        }
     }
-
-
 }
