@@ -31,10 +31,11 @@ public class Ball {
 	}
 	
 	public boolean hitEdge(){
-		return position.x <= 0;
+		return position.y <= 0;
 	}
 
 	public boolean hitBlueCar() {
+		
 		return position.x > bluecar.getPosition().x && 
 				position.x < bluecar.getPosition().x + Bluecar.width && 
 				position.y > bluecar.getPosition().y && 

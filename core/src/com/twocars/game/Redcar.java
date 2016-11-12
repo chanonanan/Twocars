@@ -14,6 +14,8 @@ public class Redcar {
 	 private int currentDirection;
 	 private int nextDirection;
 	 private World world; 
+		private int moveAccel = 1;
+		private int moveSpeed;
 	 
 	private static final int [][] DIR_OFFSETS = new int [][] {
 		{0,0},
@@ -61,6 +63,27 @@ public class Redcar {
 
 	public void hitByBall() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public void move2(boolean isRedcarMoved) {
+		if(isRedcarMoved) {
+			if (position.x < 160) {
+				position.x += moveSpeed;
+				moveSpeed += moveAccel;
+				if (position.x > 160) {
+					position.x = 160;
+				}
+			}
+		}else {
+			if (position.x > 35) {
+				position.x -= moveSpeed;
+				moveSpeed += moveAccel;
+				if (position.x < 35) {
+					position.x = 35;
+				}
+			}
+		}
 		
 	}
 }

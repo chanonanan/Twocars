@@ -23,7 +23,7 @@ public class Box {
 	}
 	
 	public boolean hitEdge(){
-		return position.x <= 0;
+		return position.y <= -51;
 	}
 
 

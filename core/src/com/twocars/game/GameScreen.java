@@ -14,6 +14,8 @@ public class GameScreen extends ScreenAdapter {
 	private MyTwocarsGame mytwocarsGame;
 	World world;
 	WorldRenderer worldRenderer;
+	public boolean isBluecarMoved = false;
+	public boolean isRedcarMoved = false;
 
 	 
     public GameScreen(MyTwocarsGame mytwocarsGame) {
@@ -40,6 +42,12 @@ public class GameScreen extends ScreenAdapter {
 	private void getInput() {
 		Bluecar bluecar = world.getBluecar();
 		Redcar redcar = world.getRedcar();
+		
+		if(Gdx.input.isKeyJustPressed(Keys.Z)) {
+			isRedcarMoved = !isRedcarMoved;
+			redcar.move2(isRedcarMoved);
+		}
+		
 		if(Gdx.input.isKeyJustPressed(Keys.D)) {
 			redcar.move(Redcar.DIRECTION_RIGHT);
 		}

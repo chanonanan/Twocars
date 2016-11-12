@@ -3,8 +3,7 @@ package com.twocars.game;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
+
 
 
 
@@ -14,6 +13,8 @@ public class World {
 	private List<Ball> ball;
 	private List<Box> box;
 	private MyTwocarsGame mytwocarGame;
+	private int highScore = 0;
+	private int score = 0;
 	
 	World(MyTwocarsGame mytwocarGame) {
 		this.mytwocarGame = mytwocarGame;
@@ -59,6 +60,7 @@ public class World {
 			if(box.get(i).hitEdge())
 			{
 				box.remove(i);
+				System.out.println("remove");
 			}
 
 		}
@@ -71,19 +73,33 @@ public class World {
 			if(ball.get(i).hitBlueCar()) {
 				bluecar.hitByBall();
 				ball.remove(i);
+				score++;
 				continue;
 			}
 			if(ball.get(i).hitRedCar()) {
 				redcar.hitByBall();
 				ball.remove(i);
+		        System.out.println("hit");
+		        score++;
 				continue;
 			}
 			if(ball.get(i).hitEdge()) {
-				ball.remove(i);
-		        System.out.println("remove");
+				mytwocarGame.dispose();
+				mytwocarGame.create();
+		        System.out.println("End");
 				//game over here
 			}
 
 		}
+	}
+
+	public int getHighScore() {
+		if(score >= highScore) highScore = score;
+		return highScore;
+	}
+	
+
+	public int getScore() {
+		return score;
 	}
 }

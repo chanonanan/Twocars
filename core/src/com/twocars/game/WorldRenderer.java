@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
@@ -33,6 +34,7 @@ public class WorldRenderer{
 	private double timeAux2 = 0;
 	private List<Ball> ball;
 	private List<Box> box;
+    private BitmapFont font;
 
 	public WorldRenderer(MyTwocarsGame mytwocarsGame, World world) {
 		this.mytwocarsGame = mytwocarsGame;
@@ -45,6 +47,8 @@ public class WorldRenderer{
     	boxImg = new Texture("box.png");
     	bluecar = world.getBluecar();
     	redcar = world.getRedcar();
+        font = new BitmapFont();
+
 
 
 	}
@@ -60,6 +64,8 @@ public class WorldRenderer{
         batch.draw(bgImg, 0, 0);
         batch.draw(bluecarImg, pos_blue.x, pos_blue.y);
         batch.draw(redcarImg, pos_red.x, pos_red.y);
+	    font.draw(batch, "HI-SCORE : " + world.getHighScore(), 215, 55);
+	    font.draw(batch, "SCORE : " + world.getScore(), 215, 35);
         ball = world.getBall();
         box = world.getBox();
         
