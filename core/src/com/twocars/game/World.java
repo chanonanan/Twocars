@@ -13,12 +13,11 @@ public class World {
 	private List<Ball> ball;
 	private List<Box> box;
 	private MyTwocarsGame mytwocarGame;
-	private int highScore = 0;
 	private int score = 0;
 	
 	World(MyTwocarsGame mytwocarGame) {
 		this.mytwocarGame = mytwocarGame;
-		bluecar = new Bluecar(415,75);
+		bluecar = new Bluecar(420,75);
 	    redcar = new Redcar(35,75);
 	    ball = new ArrayList<Ball>();
 	    box = new ArrayList<Box>();
@@ -45,22 +44,27 @@ public class World {
         bluecar.update();
         updateBall();
         updateBox();
+        updateHighScore();
     }
     
     private void updateBox() {
 		for(int i=0;i<box.size();i++)
 		{
 			box.get(i).update();
-//			if(ball.get(i).hitBoss())
-//			{
-//				boss.hitByBullet();
-//				bullet.remove(i);
-//				continue;
-//			}
+			if(box.get(i).hitBlueCar()) {
+				mytwocarGame.dispose();
+				mytwocarGame.create();
+				continue;
+			}
+			if(box.get(i).hitRedCar()) {
+				mytwocarGame.dispose();
+				mytwocarGame.create();
+				continue;
+			}
 			if(box.get(i).hitEdge())
 			{
 				box.remove(i);
-				System.out.println("remove");
+//				System.out.println("remove");
 			}
 
 		}
@@ -71,13 +75,12 @@ public class World {
 		for(int i=0;i<ball.size();i++) {
 			ball.get(i).update();
 			if(ball.get(i).hitBlueCar()) {
-				bluecar.hitByBall();
+				System.out.println("Hit");
 				ball.remove(i);
 				score++;
 				continue;
 			}
 			if(ball.get(i).hitRedCar()) {
-				redcar.hitByBall();
 				ball.remove(i);
 		        System.out.println("hit");
 		        score++;
@@ -86,16 +89,14 @@ public class World {
 			if(ball.get(i).hitEdge()) {
 				mytwocarGame.dispose();
 				mytwocarGame.create();
-		        System.out.println("End");
-				//game over here
+				ball.remove(i);
 			}
 
 		}
 	}
 
-	public int getHighScore() {
-		if(score >= highScore) highScore = score;
-		return highScore;
+	public void updateHighScore() {
+		if(score >= mytwocarGame.getHighScore()) mytwocarGame.setHighScore(score);
 	}
 	
 

@@ -23,7 +23,9 @@ public class WorldRenderer{
 	private Texture redcarImg;
 	private Texture bgImg;
 	private Texture ballImg;
+	private Texture ball2Img;
 	private Texture boxImg;
+	private Texture box2Img;
 	private World world;
 	private MyTwocarsGame myTwocarsGame;
 	private Bluecar bluecar;
@@ -36,6 +38,7 @@ public class WorldRenderer{
 	private List<Box> box;
     private BitmapFont font;
 
+
 	public WorldRenderer(MyTwocarsGame mytwocarsGame, World world) {
 		this.mytwocarsGame = mytwocarsGame;
 		batch = mytwocarsGame.batch;
@@ -44,7 +47,9 @@ public class WorldRenderer{
     	redcarImg = new Texture("redcar.png");
     	bgImg = new Texture("bg.jpg");
     	ballImg = new Texture("ball.png");
+    	ball2Img = new Texture("ball2.png");
     	boxImg = new Texture("box.png");
+    	box2Img = new Texture("box2.png");
     	bluecar = world.getBluecar();
     	redcar = world.getRedcar();
         font = new BitmapFont();
@@ -62,9 +67,9 @@ public class WorldRenderer{
 	
         
         batch.draw(bgImg, 0, 0);
-        batch.draw(bluecarImg, pos_blue.x, pos_blue.y);
-        batch.draw(redcarImg, pos_red.x, pos_red.y);
-	    font.draw(batch, "HI-SCORE : " + world.getHighScore(), 215, 55);
+
+
+	    font.draw(batch, "HI-SCORE : " + mytwocarsGame.getHighScore(), 215, 55);
 	    font.draw(batch, "SCORE : " + world.getScore(), 215, 35);
         ball = world.getBall();
         box = world.getBox();
@@ -76,14 +81,28 @@ public class WorldRenderer{
         
         for(Ball i : ball )
 		{
-			batch.draw(ballImg, i.getPosition().x,i.getPosition().y);
+        	if(i.getPosition().x >200) {
+        		batch.draw(ball2Img, i.getPosition().x,i.getPosition().y);
+        	} else {
+        		batch.draw(ballImg, i.getPosition().x,i.getPosition().y);
+
+        	}
+			
 		}
         
         for(Box n : box )
 		{
-			batch.draw(boxImg, n.getPosition().x,n.getPosition().y);
+        	if(n.getPosition().x >200) {
+        		batch.draw(boxImg, n.getPosition().x,n.getPosition().y);
+        	} else {
+        		batch.draw(box2Img, n.getPosition().x,n.getPosition().y);
+
+        	}
+			
 		}
         
+		batch.draw(bluecarImg, pos_blue.x, pos_blue.y);
+	    batch.draw(redcarImg, pos_red.x, pos_red.y);
         batch.end();
         
     }
@@ -107,7 +126,7 @@ public class WorldRenderer{
            	posSpawn2 =  290;
            }
            else{
-           	posSpawn2 =  415;
+           	posSpawn2 =  420;
            }
     }
     
@@ -116,7 +135,7 @@ public class WorldRenderer{
 			if(delta*1000 > 17){
 				ball.add(new Ball(posSpawn, 800, myTwocarsGame, world));
 			}else {
-				box.add(new Box(posSpawn, 800));
+				box.add(new Box(posSpawn, 800, myTwocarsGame, world));
 			}
             timeAux=0;
         }else{
@@ -126,9 +145,9 @@ public class WorldRenderer{
 		
 		if(timeAux2 >=0.5){
 			if(delta*10000 > 165){
-				ball.add(new Ball(posSpawn2, 800, myTwocarsGame, world));
+				ball.add(new Ball(posSpawn2, 860, myTwocarsGame, world));
 			}else {
-				box.add(new Box(posSpawn2, 800));
+				box.add(new Box(posSpawn2, 860, myTwocarsGame, world));
 			}
             timeAux2=0;
         }else{

@@ -2,7 +2,6 @@ package com.twocars.game.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.mygdx.game.PacmanGame;
 import com.twocars.game.MyTwocarsGame;
 
 public class DesktopLauncher {

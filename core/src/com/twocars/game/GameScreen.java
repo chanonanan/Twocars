@@ -33,7 +33,7 @@ public class GameScreen extends ScreenAdapter {
     	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     	worldRenderer.render(delta);
     }
-    //position 35/160/290/415
+    //position 35/160/290/420
 	private void update(float delta) {
 		getInput();
   	  	world.update(delta);
@@ -45,24 +45,29 @@ public class GameScreen extends ScreenAdapter {
 		
 		if(Gdx.input.isKeyJustPressed(Keys.Z)) {
 			isRedcarMoved = !isRedcarMoved;
+	        System.out.println("" +isRedcarMoved);
 			redcar.move2(isRedcarMoved);
 		}
-		
+		if(Gdx.input.isKeyJustPressed(Keys.X)) {
+			isBluecarMoved = !isBluecarMoved;
+	        System.out.println("" +isBluecarMoved);
+			bluecar.move2(isBluecarMoved);
+		}
 		if(Gdx.input.isKeyJustPressed(Keys.D)) {
-			redcar.move(Redcar.DIRECTION_RIGHT);
+			redcar.move(2);
 		}
 		if(Gdx.input.isKeyJustPressed(Keys.A)) {
-			redcar.move(Redcar.DIRECTION_LEFT);
+			redcar.move(4);
 		}
 
 		if(Gdx.input.isKeyJustPressed(Keys.LEFT)) {
-			bluecar.move(Bluecar.DIRECTION_LEFT);
+			bluecar.move(4);
 		}
 		if(Gdx.input.isKeyJustPressed(Keys.RIGHT)) {
-			bluecar.move(Bluecar.DIRECTION_RIGHT);
+			bluecar.move(2);
 		}else{
-			bluecar.move(Bluecar.DIRECTION_STILL);
-			redcar.move(Redcar.DIRECTION_STILL);
+			bluecar.move(0);
+			redcar.move(0);
    	 	}
 	}
 }

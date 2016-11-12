@@ -6,13 +6,15 @@ import com.badlogic.gdx.math.Vector2;
 public class Ball {
 	private Vector2 position;
 	private int speed = 10;
+	public static float width = 50;
+	public static float height = 50;
     private World world; 
     private MyTwocarsGame myTwocarsGame;
     private Bluecar bluecar;
     private Redcar redcar;
 
     
-    public Ball(int x, int y,MyTwocarsGame myTwocarsGame,World world) {
+    public Ball(float x, float y,MyTwocarsGame myTwocarsGame,World world) {
     	this.myTwocarsGame = myTwocarsGame;
     	position = new Vector2(x,y);
     	this.world = world;
@@ -28,6 +30,7 @@ public class Ball {
 
 	public void update() {
 		position.y -= speed;
+
 	}
 	
 	public boolean hitEdge(){
@@ -35,18 +38,17 @@ public class Ball {
 	}
 
 	public boolean hitBlueCar() {
-		
-		return position.x > bluecar.getPosition().x && 
-				position.x < bluecar.getPosition().x + Bluecar.width && 
-				position.y > bluecar.getPosition().y && 
-				position.y < bluecar.getPosition().y + Bluecar.height;
+		if(position.y <= bluecar.getPosition().y + Bluecar.height && position.y <= bluecar.getPosition().y) {
+			if(position.x == bluecar.getPosition().x) return true;
+		}
+		return false;
 	}
 
 	public boolean hitRedCar() {
-		return position.x > redcar.getPosition().x && 
-				position.x < redcar.getPosition().x + Redcar.width && 
-				position.y > redcar.getPosition().y && 
-				position.y < redcar.getPosition().y + Redcar.height;
+		if(position.y <= redcar.getPosition().y + Redcar.height && position.y <= redcar.getPosition().y) {
+			if(position.x == redcar.getPosition().x) return true;
+		}
+		return false;
 	}
 
 

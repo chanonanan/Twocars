@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class MyTwocarsGame extends Game {
 		public SpriteBatch batch;
+		private int highScore = 0;
 	
 		@Override
 		public void create () {
@@ -23,6 +24,15 @@ public class MyTwocarsGame extends Game {
 		batch.dispose();
 		
 		}
+		
+		public int getHighScore() {
+		    	return highScore;
+		}
+		
+		public void setHighScore(int score) {
+		    highScore = score;
+		}
+
 
 }
 	
