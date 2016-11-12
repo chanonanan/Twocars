@@ -8,6 +8,8 @@ public class Redcar {
 	 public static final int DIRECTION_DOWN = 3;
 	 public static final int DIRECTION_LEFT = 4;
 	 public static final int DIRECTION_STILL = 0;
+	public static int width = 51;
+	public static int height = 98;
 	 private static final int SPEED = 5;
 	 private int currentDirection;
 	 private int nextDirection;
@@ -56,4 +58,9 @@ public class Redcar {
         	position.x += 1 * DIR_OFFSETS[dir][0];
         }
     }
+
+	public void hitByBall() {
+		// TODO Auto-generated method stub
+		
+	}
 }

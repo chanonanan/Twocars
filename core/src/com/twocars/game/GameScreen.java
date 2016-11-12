@@ -14,7 +14,6 @@ public class GameScreen extends ScreenAdapter {
 	private MyTwocarsGame mytwocarsGame;
 	World world;
 	WorldRenderer worldRenderer;
-	private List<Ball> ball;
 
 	 
     public GameScreen(MyTwocarsGame mytwocarsGame) {
