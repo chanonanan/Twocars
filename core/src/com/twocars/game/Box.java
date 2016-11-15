@@ -35,19 +35,21 @@ public class Box {
 	}
 
 	public boolean hitBlueCar() {
-		if(position.y <= bluecar.getPosition().y + Bluecar.height 
-				&& position.y <= bluecar.getPosition().y
-				&& position.x == bluecar.getPosition().x) return true;
-
-		return false;
+		float x = position.x + width/2;
+		float y = position.y + height/2;
+		return x > bluecar.getPosition().x
+				&& x < bluecar.getPosition().x+Bluecar.width
+				&& y > bluecar.getPosition().y
+				&& y < bluecar.getPosition().y+Bluecar.height;
 	}
 
 	public boolean hitRedCar() {
-		if(position.y <= redcar.getPosition().y + Redcar.height 
-				&& position.y <= redcar.getPosition().y 
-				&& position.x == redcar.getPosition().x) return true;
-
-		return false;
+		float x = position.x + width/2;
+		float y = position.y + height/2;
+		return x > redcar.getPosition().x
+				&& x < redcar.getPosition().x+Redcar.width
+				&& y > redcar.getPosition().y
+				&& y < redcar.getPosition().y+Redcar.height;
 	}
 
 
