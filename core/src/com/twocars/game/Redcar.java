@@ -7,16 +7,12 @@ public class Redcar {
 	public static float width = 50;
 	public static float height = 96;
 	private static final int SPEED = 5;
-	private int moveAccel = 1;
-	private int moveSpeed;
+    private int currentDirection;
+    private int nextDirection;
+    public static final int DIRECTION_STILL = 0;
+
 	 
-	private static final int [][] DIR_OFFSETS = new int [][] {
-		{0,0},
-	    {0,-1},
-	    {1,0},
-	    {0,1},
-	    {-1,0}
-	};
+	private static final int [][] DIR_OFFSETS = new int [][] {{0,0}, {0,-1}, {1,0}, {0,1}, {-1,0}};
 	    
     public Redcar(int x, int y) {
         position = new Vector2(x,y);
@@ -28,47 +24,44 @@ public class Redcar {
     }
     
     public void update() {
-    	
+    	if(isAtCenter()) {
+            if(canMoveInDirection(nextDirection)) {
+                currentDirection = nextDirection;  
+                
+            } else {
+                currentDirection = DIRECTION_STILL;    
+            }
+    	}
+        position.x += SPEED * DIR_OFFSETS[currentDirection][0];
     }
     
-    //position 35/160/290/415
     
-    public void move(int dir) { 
-    	if(position.x >= 160) {
-    		position.x = 160;
-    	}
-    	if(position.x <= 35) {
-    		position.x = 35;
-    	}
-        
-        for (int i=1 ;i<=125 ;i++) {
-        	position.x += 1 * DIR_OFFSETS[dir][0];
-        }
-    }
+    private boolean canMoveInDirection(int next) {
+ 		if((next == 4 && position.x <=35 )||(next == 2 && position.x >= 160)) {
+ 			return false;
+ 		}
+ 		else {
+ 			return true;
+ 		}
+ 	}
 
 
-	public void move2(boolean isRedcarMoved) {
-		while(true) {
-			if(isRedcarMoved) {
-				if (position.x < 160) {
-					position.x += moveSpeed;
-					moveSpeed += moveAccel;
-					if (position.x > 160) {
-						position.x = 160;
-						break;
-					}
-				}
-			}else {
-				if (position.x > 35) {
-					position.x -= moveSpeed;
-					moveSpeed += moveAccel;
-					if (position.x < 35) {
-						position.x = 35;
-						break;
-					}
-				}
-			}
+ 	private boolean isAtCenter() {
+ 		if(position.x == 35 || position.x == 160) {
+ 			return true;
+ 		} else {
+ 			return false;
+ 		}
+ 	}
+
+
+	public void move2(boolean isBluecarMoved) {
+
+		if(!isBluecarMoved) {
+			nextDirection = 4;
 		}
-		
+		else {
+			nextDirection = 2;
+		}
 	}
 }

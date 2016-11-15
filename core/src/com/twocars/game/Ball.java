@@ -5,13 +5,14 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Ball {
 	private Vector2 position;
-	private int speed = 10;
+	private float speed = 7f;
 	public static float width = 50;
 	public static float height = 50;
     private World world; 
     private MyTwocarsGame myTwocarsGame;
     private Bluecar bluecar;
     private Redcar redcar;
+
 
     
     public Ball(float x, float y,MyTwocarsGame myTwocarsGame,World world) {
@@ -38,17 +39,21 @@ public class Ball {
 	}
 
 	public boolean hitBlueCar() {
-		if(position.y <= bluecar.getPosition().y + Bluecar.height && position.y <= bluecar.getPosition().y) {
-			if(position.x == bluecar.getPosition().x) return true;
-		}
-		return false;
+		float x = position.x + width/2;
+		float y = position.y + height/2;
+		return x > bluecar.getPosition().x
+				&& x < bluecar.getPosition().x+Bluecar.width
+				&& y > bluecar.getPosition().y
+				&& y < bluecar.getPosition().y+Bluecar.height;
 	}
 
 	public boolean hitRedCar() {
-		if(position.y <= redcar.getPosition().y + Redcar.height && position.y <= redcar.getPosition().y) {
-			if(position.x == redcar.getPosition().x) return true;
-		}
-		return false;
+		float x = position.x + width/2;
+		float y = position.y + height/2;
+		return x > redcar.getPosition().x
+				&& x < redcar.getPosition().x+Redcar.width
+				&& y > redcar.getPosition().y
+				&& y < redcar.getPosition().y+Redcar.height;
 	}
 
 

@@ -41,33 +41,14 @@ public class GameScreen extends ScreenAdapter {
 	
 	private void getInput() {
 		Bluecar bluecar = world.getBluecar();
-		Redcar redcar = world.getRedcar();
-		
+		Redcar redcar = world.getRedcar();		
 		if(Gdx.input.isKeyJustPressed(Keys.Z)) {
 			isRedcarMoved = !isRedcarMoved;
-	        System.out.println("" +isRedcarMoved);
 			redcar.move2(isRedcarMoved);
 		}
 		if(Gdx.input.isKeyJustPressed(Keys.X)) {
 			isBluecarMoved = !isBluecarMoved;
-	        System.out.println("" +isBluecarMoved);
 			bluecar.move2(isBluecarMoved);
 		}
-		if(Gdx.input.isKeyJustPressed(Keys.D)) {
-			redcar.move(2);
-		}
-		if(Gdx.input.isKeyJustPressed(Keys.A)) {
-			redcar.move(4);
-		}
-
-		if(Gdx.input.isKeyJustPressed(Keys.LEFT)) {
-			bluecar.move(4);
-		}
-		if(Gdx.input.isKeyJustPressed(Keys.RIGHT)) {
-			bluecar.move(2);
-		}else{
-			bluecar.move(0);
-			redcar.move(0);
-   	 	}
 	}
 }

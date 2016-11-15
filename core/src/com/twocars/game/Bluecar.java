@@ -1,5 +1,6 @@
 package com.twocars.game;
 
+
 import com.badlogic.gdx.math.Vector2;
 
 public class Bluecar {
@@ -7,8 +8,9 @@ public class Bluecar {
 	public static float width = 50;
 	public static float height = 96;
 	private static final int SPEED = 5;
-	private int moveAccel = 1;
-	private int moveSpeed;
+    private int currentDirection;
+    private int nextDirection;
+    public static final int DIRECTION_STILL = 0;
 
     
     private static final int [][] DIR_OFFSETS = new int [][] {
@@ -29,46 +31,45 @@ public class Bluecar {
     }
     
     public void update() {
-
-    }
-    //position 35/160/290/415
-    
-    public void move(int dir) { 
-        	if(position.x >= 420) {
-        		position.x = 420;
-        	}
-        	if(position.x <= 290) {
-        		position.x = 290;
-        	}
-            
-            for (int i=1 ;i<=130 ;i++) {
-            	position.x += 1 * DIR_OFFSETS[dir][0];
+    	if(isAtCenter()) {
+            if(canMoveInDirection(nextDirection)) {
+                currentDirection = nextDirection;  
+                
+            } else {
+                currentDirection = DIRECTION_STILL;    
             }
+    	}
+        position.x += SPEED * DIR_OFFSETS[currentDirection][0];
     }
+    
+    private boolean canMoveInDirection(int next) {
+		if((next == 4 && position.x <=290 )||(next == 2 && position.x >= 420)) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+
+
+	private boolean isAtCenter() {
+		if(position.x == 420 || position.x == 290) {
+ 			return true;
+ 		} else {
+ 			return false;
+ 		}
+	}
+
+
+
 
 	public void move2(boolean isBluecarMoved) {
-		while(true) {
-			if(!isBluecarMoved) {
-//				position.x = 420;
-				if (position.x < 420) {
-					position.x += moveSpeed;
-					moveSpeed += moveAccel;
-					if (position.x > 420) {
-						position.x = 420;
-					break;
-					}
-				}
-			} else {
-//				position.x = 290;
-				if (position.x > 290) {			
-					position.x -= moveSpeed;
-					moveSpeed += moveAccel;
-					if (position.x < 290) {
-						position.x = 290;
-						break;
-					}
-				}
-			}
+
+		if(isBluecarMoved) {
+			nextDirection = 4;
+		}
+		else {
+			nextDirection = 2;
 		}
 	}
 

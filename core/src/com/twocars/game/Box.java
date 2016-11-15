@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Box {
 	private Vector2 position;
-	private int speed = 10;
+	private float speed = 7f;
     private World world; 
     private MyTwocarsGame myTwocarsGame;
 	public static float width = 50;
@@ -31,20 +31,22 @@ public class Box {
 	}
 	
 	public boolean hitEdge(){
-		return position.y <= -51;
+		return position.y <= -height;
 	}
 
 	public boolean hitBlueCar() {
-		if(position.y <= bluecar.getPosition().y + Bluecar.height && position.y <= bluecar.getPosition().y) {
-			if(position.x == bluecar.getPosition().x) return true;
-		}
+		if(position.y <= bluecar.getPosition().y + Bluecar.height 
+				&& position.y <= bluecar.getPosition().y
+				&& position.x == bluecar.getPosition().x) return true;
+
 		return false;
 	}
 
 	public boolean hitRedCar() {
-		if(position.y <= redcar.getPosition().y + Redcar.height && position.y <= redcar.getPosition().y) {
-			if(position.x == redcar.getPosition().x) return true;
-		}
+		if(position.y <= redcar.getPosition().y + Redcar.height 
+				&& position.y <= redcar.getPosition().y 
+				&& position.x == redcar.getPosition().x) return true;
+
 		return false;
 	}
 

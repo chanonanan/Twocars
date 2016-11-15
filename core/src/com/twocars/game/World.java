@@ -47,7 +47,8 @@ public class World {
         updateHighScore();
     }
     
-    private void updateBox() {
+
+	private void updateBox() {
 		for(int i=0;i<box.size();i++)
 		{
 			box.get(i).update();
@@ -61,10 +62,8 @@ public class World {
 				mytwocarGame.create();
 				continue;
 			}
-			if(box.get(i).hitEdge())
-			{
+			if(box.get(i).hitEdge()) {
 				box.remove(i);
-//				System.out.println("remove");
 			}
 
 		}
@@ -75,14 +74,12 @@ public class World {
 		for(int i=0;i<ball.size();i++) {
 			ball.get(i).update();
 			if(ball.get(i).hitBlueCar()) {
-				System.out.println("Hit");
 				ball.remove(i);
 				score++;
 				continue;
 			}
 			if(ball.get(i).hitRedCar()) {
 				ball.remove(i);
-		        System.out.println("hit");
 		        score++;
 				continue;
 			}

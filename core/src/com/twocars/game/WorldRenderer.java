@@ -1,11 +1,9 @@
 package com.twocars.game;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Random;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.GL20;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -37,6 +35,7 @@ public class WorldRenderer{
 	private List<Ball> ball;
 	private List<Box> box;
     private BitmapFont font;
+    public static int [] positionSpawn = new int[] {35, 160, 290, 420};
 
 
 	public WorldRenderer(MyTwocarsGame mytwocarsGame, World world) {
@@ -53,9 +52,6 @@ public class WorldRenderer{
     	bluecar = world.getBluecar();
     	redcar = world.getRedcar();
         font = new BitmapFont();
-
-
-
 	}
 	
     public void render(float delta) {
@@ -67,14 +63,10 @@ public class WorldRenderer{
 	
         
         batch.draw(bgImg, 0, 0);
-
-
 	    font.draw(batch, "HI-SCORE : " + mytwocarsGame.getHighScore(), 215, 55);
 	    font.draw(batch, "SCORE : " + world.getScore(), 215, 35);
         ball = world.getBall();
         box = world.getBox();
-        
-        //position 35/160/290/415
         randomNum();
         randomNum2();
         spawnBall (delta);
@@ -101,8 +93,21 @@ public class WorldRenderer{
 			
 		}
         
-		batch.draw(bluecarImg, pos_blue.x, pos_blue.y);
-	    batch.draw(redcarImg, pos_red.x, pos_red.y);
+//        if(bluecar.bluecarStay) {
+//        	batch.draw(bluecarImg, pos_blue.x, pos_blue.y);
+//        }
+//        if(!bluecarStay) {
+//        	
+//        }
+//        if(redcar.redcarStay) {
+//        	batch.draw(redcarImg, pos_red.x, pos_red.y);
+//        }
+//        if(!redcarStay) {
+//        	
+//        }
+        
+        batch.draw(bluecarImg, pos_blue.x, pos_blue.y);
+        batch.draw(redcarImg, pos_red.x, pos_red.y);
         batch.end();
         
     }
@@ -112,10 +117,10 @@ public class WorldRenderer{
         Random random = new Random();
         int number = random.nextInt(100);
         if(number<=50){
-        	posSpawn =  35;
+        	posSpawn =  positionSpawn[0];
         }
         else {
-        	posSpawn =  160;
+        	posSpawn =  positionSpawn[1];
         }
     }
     
@@ -123,15 +128,15 @@ public class WorldRenderer{
     	   Random random2 = new Random();
            int number2 = random2.nextInt(100);
            if (number2<=50) {
-           	posSpawn2 =  290;
+           	posSpawn2 =  positionSpawn[2];
            }
            else{
-           	posSpawn2 =  420;
+           	posSpawn2 =  positionSpawn[3];
            }
     }
     
     private void spawnBall (float delta) {
-		if(timeAux >=0.5){
+		if(timeAux >=0.9f){
 			if(delta*1000 > 17){
 				ball.add(new Ball(posSpawn, 800, myTwocarsGame, world));
 			}else {
@@ -142,8 +147,7 @@ public class WorldRenderer{
             timeAux+=delta;
         }
 
-		
-		if(timeAux2 >=0.5){
+		if(timeAux2 >=0.9f){
 			if(delta*10000 > 165){
 				ball.add(new Ball(posSpawn2, 860, myTwocarsGame, world));
 			}else {
