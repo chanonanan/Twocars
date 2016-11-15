@@ -55,7 +55,7 @@ public class Redcar {
  	}
 
 
-	public void move2(boolean isBluecarMoved) {
+	public void move(boolean isBluecarMoved) {
 
 		if(!isBluecarMoved) {
 			nextDirection = 4;

@@ -14,7 +14,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class WorldRenderer{
 	
-	public static final int BLOCK_SIZE = 50;
+
 	private SpriteBatch batch;
 	private MyTwocarsGame mytwocarsGame;
 	private Texture bluecarImg;
@@ -28,10 +28,10 @@ public class WorldRenderer{
 	private MyTwocarsGame myTwocarsGame;
 	private Bluecar bluecar;
 	private Redcar redcar;
-	float timeAux = 0;
+	private float timeAux = 0f;
 	public static int posSpawn;
 	private int posSpawn2;
-	private double timeAux2 = 0;
+	private float timeAux2 = 0f;
 	private List<Ball> ball;
 	private List<Box> box;
     private BitmapFont font;
@@ -71,41 +71,22 @@ public class WorldRenderer{
         randomNum2();
         spawnBall (delta);
         
-        for(Ball i : ball )
-		{
+        for(Ball i : ball ) {
         	if(i.getPosition().x >200) {
         		batch.draw(ball2Img, i.getPosition().x,i.getPosition().y);
         	} else {
         		batch.draw(ballImg, i.getPosition().x,i.getPosition().y);
-
         	}
-			
 		}
         
-        for(Box n : box )
-		{
+        for(Box n : box ) {
         	if(n.getPosition().x >200) {
         		batch.draw(boxImg, n.getPosition().x,n.getPosition().y);
         	} else {
         		batch.draw(box2Img, n.getPosition().x,n.getPosition().y);
-
         	}
-			
 		}
-        
-//        if(bluecar.bluecarStay) {
-//        	batch.draw(bluecarImg, pos_blue.x, pos_blue.y);
-//        }
-//        if(!bluecarStay) {
-//        	
-//        }
-//        if(redcar.redcarStay) {
-//        	batch.draw(redcarImg, pos_red.x, pos_red.y);
-//        }
-//        if(!redcarStay) {
-//        	
-//        }
-        
+                
         batch.draw(bluecarImg, pos_blue.x, pos_blue.y);
         batch.draw(redcarImg, pos_red.x, pos_red.y);
         batch.end();

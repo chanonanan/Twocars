@@ -23,7 +23,7 @@ public class GameScreen extends ScreenAdapter {
      
         world = new World(mytwocarsGame);
         worldRenderer = new WorldRenderer(mytwocarsGame,world);
-        //position 35/160/290/415
+
     }
     
     @Override
@@ -33,7 +33,7 @@ public class GameScreen extends ScreenAdapter {
     	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     	worldRenderer.render(delta);
     }
-    //position 35/160/290/420
+
 	private void update(float delta) {
 		getInput();
   	  	world.update(delta);
@@ -44,11 +44,11 @@ public class GameScreen extends ScreenAdapter {
 		Redcar redcar = world.getRedcar();		
 		if(Gdx.input.isKeyJustPressed(Keys.Z)) {
 			isRedcarMoved = !isRedcarMoved;
-			redcar.move2(isRedcarMoved);
+			redcar.move(isRedcarMoved);
 		}
 		if(Gdx.input.isKeyJustPressed(Keys.X)) {
 			isBluecarMoved = !isBluecarMoved;
-			bluecar.move2(isBluecarMoved);
+			bluecar.move(isBluecarMoved);
 		}
 	}
 }

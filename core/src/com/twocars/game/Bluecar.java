@@ -13,13 +13,8 @@ public class Bluecar {
     public static final int DIRECTION_STILL = 0;
 
     
-    private static final int [][] DIR_OFFSETS = new int [][] {
-        {0,0},
-        {0,-1},
-        {1,0},
-        {0,1},
-        {-1,0}
-    };
+    private static final int [][] DIR_OFFSETS = new int [][] {{0,0}, {0,-1}, {1,0}, {0,1}, {-1,0}};
+
   
     public Bluecar(int x, int y) {
         position = new Vector2(x,y);
@@ -63,8 +58,7 @@ public class Bluecar {
 
 
 
-	public void move2(boolean isBluecarMoved) {
-
+	public void move(boolean isBluecarMoved) {
 		if(isBluecarMoved) {
 			nextDirection = 4;
 		}
