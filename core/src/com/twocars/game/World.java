@@ -64,6 +64,7 @@ public class World {
 			}
 			if(box.get(i).hitEdge()) {
 				box.remove(i);
+				i--;
 			}
 
 		}
@@ -75,11 +76,13 @@ public class World {
 			ball.get(i).update();
 			if(ball.get(i).hitBlueCar()) {
 				ball.remove(i);
+				i--;
 				score++;
 				continue;
 			}
 			if(ball.get(i).hitRedCar()) {
 				ball.remove(i);
+				i--;
 		        score++;
 				continue;
 			}
@@ -87,6 +90,7 @@ public class World {
 				mytwocarGame.dispose();
 				mytwocarGame.create();
 				ball.remove(i);
+				i--;
 			}
 
 		}
